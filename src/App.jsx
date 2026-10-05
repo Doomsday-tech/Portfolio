@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import Loader from './components/Loader'
+import TerminalLoader from './components/TerminalLoader' // We will create this next
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -15,16 +15,14 @@ import Footer from './components/Footer'
 function App() {
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 900)
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <>
-      <AnimatePresence>{loading && <Loader />}</AnimatePresence>
+      <AnimatePresence>
+        {loading && <TerminalLoader onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
 
-      <div className="relative min-h-screen overflow-x-hidden">
+      {/* We apply a global dark theme here (bg-zinc-950) to match the new vibe */}
+      <div className={`relative min-h-screen overflow-x-hidden bg-zinc-950 text-zinc-300 ${loading ? 'h-screen overflow-hidden' : ''}`}>
         <Navbar />
         <main>
           <Hero />

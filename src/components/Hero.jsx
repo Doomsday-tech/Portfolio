@@ -1,165 +1,62 @@
-import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaArrowRight, FaDownload } from 'react-icons/fa'
-import { HiOutlineMail } from 'react-icons/hi'
-import { profile } from '../data/data'
-
-const container = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
-}
+import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from "react-icons/fa";
 
 export default function Hero() {
-  const scrollTo = (href) => {
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden"
-    >
-      {/* Background layers */}
-      <div className="absolute inset-0 -z-10 bg-hero-glow" />
-      <div className="absolute inset-0 -z-10 bg-grid-pattern [background-size:48px_48px] opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent_70%)]" />
-      <motion.div
-        aria-hidden
-        className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-accent-blue/20 blur-[120px] -z-10"
-        animate={{ scale: [1, 1.15, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        aria-hidden
-        className="absolute bottom-0 -left-24 h-80 w-80 rounded-full bg-accent-cyan/15 blur-[110px] -z-10"
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-      />
-
-      <div className="container-section relative w-full">
+    <section id="home" className="min-h-screen bg-zinc-950 text-zinc-300 flex items-center px-8 sm:px-20 relative overflow-hidden pt-20">
+      
+      {/* Background glow effect */}
+      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-cyan-900/15 blur-[140px] rounded-full" />
+      
+      <div className="max-w-4xl z-10">
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={container}
-          className="max-w-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 3.3 }}
         >
-          <motion.div variants={item} className="inline-flex items-center gap-2 pill mb-6">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75 animate-ping" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan" />
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-mono text-xs text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-3 py-1 rounded-full">
+              ● Available for Immediate Joining
             </span>
-            Open to Software Engineering Internships &amp; Roles
-          </motion.div>
+            <span className="font-mono text-xs text-zinc-500">
+              Pune, India
+            </span>
+          </div>
+          
+          <h1 className="text-5xl sm:text-7xl font-bold text-white tracking-tight mb-6">
+            Aryan Ahire <span className="text-cyan-400">.</span>
+            <br />
+            <span className="text-zinc-400 text-3xl sm:text-5xl">I build core engines from scratch.</span>
+          </h1>
+          
+          <p className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed mb-8">
+            I am a 4th-year Computer Engineering student driven by a deep need to understand how systems work under the hood. Whether I am architecting a multi-threaded distributed database in Java, training machine learning models to auto-scale cloud infrastructure, or engineering full-stack platforms, I write resilient, production-ready code with absolute dedication.
+          </p>
 
-          <motion.h1
-            variants={item}
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] text-balance"
-          >
-            Hi, I&apos;m{' '}
-            <span className="gradient-text">{profile.name}</span>
-          </motion.h1>
-
-          <motion.p
-            variants={item}
-            className="mt-4 text-lg sm:text-xl font-medium text-slate-300 text-balance"
-          >
-            {profile.title}
-          </motion.p>
-
-          <motion.p
-            variants={item}
-            className="mt-6 text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl"
-          >
-            {profile.intro}
-          </motion.p>
-
-         <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-  <a
-    href="/Aryan_Ahire_Resume.pdf"
-    download
-    target="_blank"
-    rel="noopener noreferrer"
-    className="btn-primary"
-  >
-    <FaDownload className="text-sm" />
-    Download Resume
-  </a>
-
-  <button
-    onClick={() => scrollTo('#contact')}
-    className="btn-secondary"
-  >
-    Contact Me
-    <FaArrowRight className="text-sm" />
-  </button>
-</motion.div>
-
-          <motion.div variants={item} className="mt-8 flex items-center gap-3">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub profile"
-              className="btn-icon"
+          <div className="flex flex-wrap gap-4 items-center">
+            <a 
+              href="#projects" 
+              className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-zinc-950 font-semibold rounded-lg transition-colors duration-200 shadow-lg shadow-cyan-500/20"
             >
-              <FaGithub />
+              Explore Architecture
             </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn profile"
-              className="btn-icon"
+            
+            <a 
+              href="/Aryan%20Ahire%20Resume.pdf" 
+              download="Aryan_Ahire_Resume.pdf"
+              className="px-6 py-3 bg-zinc-900 border border-zinc-700 hover:border-cyan-400 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
             >
-              <FaLinkedin />
+              <FaFileDownload className="text-cyan-400" /> Download Resume
             </a>
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="Send email"
-              className="btn-icon"
-            >
-              <HiOutlineMail className="text-lg" />
-            </a>
-            <span className="text-sm text-slate-500 ml-2">{profile.location}</span>
-          </motion.div>
-        </motion.div>
 
-        {/* Floating code card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.4 }}
-          className="hidden lg:block absolute right-10 top-32 w-[360px] animate-float"
-        >
-          <div className="glass-card p-5 font-mono text-xs sm:text-sm leading-relaxed text-slate-300 shadow-glow">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="h-3 w-3 rounded-full bg-red-400/70" />
-              <span className="h-3 w-3 rounded-full bg-yellow-400/70" />
-              <span className="h-3 w-3 rounded-full bg-green-400/70" />
-              <span className="ml-auto text-slate-500">profile.json</span>
+            <div className="flex gap-4 text-xl text-zinc-400 ml-2">
+              <a href="https://github.com/Doomsday-tech" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-colors"><FaGithub /></a>
+              <a href="https://www.linkedin.com/in/aryan-ahire-424684292" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-colors"><FaLinkedin /></a>
+              <a href="mailto:aryanahire462@gmail.com" className="hover:text-cyan-400 transition-colors"><FaEnvelope /></a>
             </div>
-            <pre className="whitespace-pre-wrap">
-{`{
-  "name": "Aryan Ahire",
-  "role": "Full Stack Developer",
-  "focus": [
-    "AI / ML",
-    "Cybersecurity",
-    "DSA"
-  ],
-  "status": "Open to work",
-  "location": "Maharashtra, IN"
-}`}
-            </pre>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
